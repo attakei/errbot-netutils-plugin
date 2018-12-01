@@ -16,7 +16,7 @@ DNS_RECORD_TYPE_CHOICES = DNS_RECORD_TYPES \
     + [t.lower() for t in DNS_RECORD_TYPES]
 
 
-class Netutils(BotPlugin):
+class NetUtils(BotPlugin):
     """Net util commands."""
 
     @arg_botcmd('fqdn', type=str)
