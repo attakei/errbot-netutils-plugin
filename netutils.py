@@ -10,5 +10,5 @@ class Netutils(BotPlugin):
     def dig(self, message, fqdn):
         """Look up DNS record."""
         answers = dns.resolver.query(fqdn, 'A')
-        return f'**Answes for {fqdn}**\n\n' \
+        return f'**Answers for {fqdn}**\n\n' \
             + '\n'.join([f'* {r.address}' for r in answers])
