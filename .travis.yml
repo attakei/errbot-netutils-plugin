@@ -10,8 +10,9 @@ matrix:
       env: TOXENV=py37
 
 before_script:
-  - pip install 'flake8>=3.6.0,<3.7.0'
+  - pip install 'flake8>=3.6.0,<3.7.0' pydocstyle
 
 script:
   - flake8
+  - pydocstyle
 
