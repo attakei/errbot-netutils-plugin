@@ -3,7 +3,7 @@ import dns.resolver
 from errbot import BotPlugin, arg_botcmd
 
 
-class Netutil(BotPlugin):
+class Netutils(BotPlugin):
     """Net util commands."""
 
     @arg_botcmd('fqdn', type=str)
