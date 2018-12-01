@@ -4,12 +4,12 @@ from errbot import BotPlugin, arg_botcmd
 
 DNS_RECORD_TYPES = [
     'A',
-    # TODO: Implement after
-    # 'AAAA',
-    # 'CNAME',
-    # 'MX',
-    # 'SOA',
-    # 'TXT',
+    'AAAA',
+    'CNAME',
+    'MX',
+    'NS',
+    'SOA',
+    'TXT',
 ]
 
 DNS_RECORD_TYPE_CHOICES = DNS_RECORD_TYPES \
@@ -26,5 +26,6 @@ class Netutils(BotPlugin):
     def dig(self, message, fqdn, record_type):
         """Look up DNS record."""
         answers = dns.resolver.query(fqdn, record_type)
-        return f'**Answers for {fqdn}**\n\n' \
-            + '\n'.join([f'* {r.address}' for r in answers])
+        return f'**{record_type.upper()} records of {fqdn}**\n\n' \
+            + '\n'.join([f'* {r.to_text()}' for r in answers])
+
