@@ -1,0 +1,10 @@
+[Core]
+name = Netutils
+module = netutils
+
+[Documentation]
+description = Net util commands
+
+[Python]
+version = 3
+
