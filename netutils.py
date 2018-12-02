@@ -28,4 +28,3 @@ class NetUtils(BotPlugin):
         answers = dns.resolver.query(fqdn, record_type)
         return f'**{record_type.upper()} records of {fqdn}**\n\n' \
             + '\n'.join([f'* {r.to_text()}' for r in answers])
-
