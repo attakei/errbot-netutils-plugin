@@ -25,6 +25,9 @@ class NetUtils(BotPlugin):
         choices=DNS_RECORD_TYPE_CHOICES, default='A')
     def dig(self, message, fqdn, record_type):
         """Look up DNS record."""
-        answers = dns.resolver.query(fqdn, record_type)
-        return f'**{record_type.upper()} records of {fqdn}**\n\n' \
-            + '\n'.join([f'* {r.to_text()}' for r in answers])
+        try:
+            answers = dns.resolver.query(fqdn, record_type)
+            return f'**{record_type.upper()} records of {fqdn}**\n\n' \
+                + '\n'.join([f'* {r.to_text()}' for r in answers])
+        except dns.resolver.NXDOMAIN as exp:
+            return f'**{record_type.upper()} records of {fqdn}** is not found.'
