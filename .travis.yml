@@ -18,6 +18,10 @@ matrix:
       env:
         - TESTENV=py36
         - ERRBOT_VERSION=5.2.0
+    - python: '3.7-dev'
+      env:
+        - TESTENV=py36
+        - ERRBOT_VERSION=6.0.0a0
 
 before_script:
   - pip install 'flake8>=3.6.0,<3.7.0' pydocstyle pytest
