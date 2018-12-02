@@ -28,6 +28,6 @@ class NetUtils(BotPlugin):
         try:
             answers = dns.resolver.query(fqdn, record_type)
             return f'**{record_type.upper()} records of {fqdn}**\n\n' \
-                + '\n'.join([f'* {r.to_text()}' for r in answers])
+                + '\n'.join([f'* `{r.to_text()}`' for r in answers])
         except dns.resolver.NXDOMAIN:
             return f'**{record_type.upper()} records of {fqdn}** is not found.'
