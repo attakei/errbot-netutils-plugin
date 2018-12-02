@@ -21,3 +21,12 @@ def test_ng__no_record(testbot):
     reply = testbot.pop_message()
     assert 'A records of norec.example.com' in reply
     assert 'is not found.' in reply
+
+
+def test_ng__no_domain(testbot):
+    """No answered query."""
+    # TODO: Return other message
+    testbot.push_message('!dig noexample.com')
+    reply = testbot.pop_message()
+    assert 'A records of noexample.com' in reply
+    assert 'is not found.' in reply
