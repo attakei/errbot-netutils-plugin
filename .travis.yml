@@ -5,11 +5,15 @@ language: python
 matrix:
   include:
     - python: '3.6'
-      env: TOXENV=lint
+      env: TESTENV=lint
+    - python: '3.6'
+      env: TESTENV=py36
 
 before_script:
-  - pip install 'flake8>=3.6.0,<3.7.0' pydocstyle
+  - pip install 'flake8>=3.6.0,<3.7.0' pydocstyle pytest
+  - if [ "$TESTENV" != "lint" ]; then pip install 'errbot<6.0'; fi
 
 script:
-  - flake8
-  - pydocstyle
+  - if [ "$TESTENV" = "lint" ];  then flake8; fi
+  - if [ "$TESTENV" = "lint" ];  then pydocstyle; fi
+  - if [ "$TESTENV" != "lint" ]; then pytest tests.py; fi
