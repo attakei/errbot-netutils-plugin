@@ -18,4 +18,4 @@ before_script:
 script:
   - if [ "$TESTENV" = "lint" ];  then flake8; fi
   - if [ "$TESTENV" = "lint" ];  then pydocstyle; fi
-  - if [ "$TESTENV" != "lint" ]; then pytest tests.py; fi
+  - if [ "$TESTENV" != "lint" ]; then pytest tests/; fi
