@@ -35,5 +35,6 @@ class NetUtils(BotPlugin):
 
     @arg_botcmd('domain', type=str)
     def whois(self, message, domain):
+        """Fetch WHOIS information."""
         result = whois.whois(domain)
-        return result.text
+        return f'```\n{result.text}```'
