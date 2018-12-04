@@ -40,4 +40,4 @@ def test_ng_nomatch(testbot, monkeypatch):
             'run',
             _packed_ansi_preprocessor__run)
         testbot.push_message('!whois no-example.com')
-        assert 'No match' in testbot.pop_message()
+        assert 'is not found' in testbot.pop_message()

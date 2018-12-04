@@ -1,4 +1,6 @@
 """Errbot netutils plugin."""
+import textwrap
+
 import dns.resolver
 import whois
 from errbot import BotPlugin, arg_botcmd
@@ -38,6 +40,12 @@ class NetUtils(BotPlugin):
         """Fetch WHOIS information."""
         try:
             result = whois.whois(domain)
-            return f'```\n{result.text}```'
-        except whois.parser.PywhoisError as error:
-            return f'```\n{error}```'
+            msg = f'''
+                **WHOIS information of {domain}**
+                \`\`\`
+                {result.text}
+                \`\`\`
+                '''  # noqa: W605
+            return textwrap.dedent(msg).strip()
+        except whois.parser.PywhoisError:
+            return f'WHOIS information of **{domain}** is not found.'
