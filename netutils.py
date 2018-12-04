@@ -1,5 +1,6 @@
 """Errbot netutils plugin."""
 import dns.resolver
+import whois
 from errbot import BotPlugin, arg_botcmd
 
 DNS_RECORD_TYPES = [
@@ -31,3 +32,12 @@ class NetUtils(BotPlugin):
                 + '\n'.join([f'* `{r.to_text()}`' for r in answers])
         except dns.resolver.NXDOMAIN:
             return f'**{record_type.upper()} records of {fqdn}** is not found.'
+
+    @arg_botcmd('domain', type=str)
+    def whois(self, message, domain):
+        """Fetch WHOIS information."""
+        try:
+            result = whois.whois(domain)
+            return f'```\n{result.text}```'
+        except whois.parser.PywhoisError as error:
+            return f'```\n{error}```'

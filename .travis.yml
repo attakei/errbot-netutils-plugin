@@ -12,10 +12,10 @@ matrix:
       env: TESTENV=py37
 
 before_script:
-  - pip install 'flake8>=3.6.0,<3.7.0' pydocstyle pytest
+  - pip install 'flake8>=3.6.0,<3.7.0' pydocstyle 'pytest>=4.0'
   - if [ "$TESTENV" != "lint" ]; then pip install 'errbot<6.0'; fi
 
 script:
   - if [ "$TESTENV" = "lint" ];  then flake8; fi
   - if [ "$TESTENV" = "lint" ];  then pydocstyle; fi
-  - if [ "$TESTENV" != "lint" ]; then pytest tests.py; fi
+  - if [ "$TESTENV" != "lint" ]; then pytest tests/; fi
