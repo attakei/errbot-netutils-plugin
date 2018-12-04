@@ -40,4 +40,4 @@ class NetUtils(BotPlugin):
             result = whois.whois(domain)
             return f'```\n{result.text}```'
         except whois.parser.PywhoisError as error:
-            return f'```\n{error}```'
+            return f'WHOIS information of **{domain}** is not found.'
