@@ -30,3 +30,14 @@ def test_ok(testbot, monkeypatch):
             _packed_ansi_preprocessor__run)
         testbot.push_message('!whois example.com')
         assert 'IANA' in testbot.pop_message()
+
+
+def test_ng_nomatch(testbot, monkeypatch):
+    """Test for call exists record."""
+    with monkeypatch.context() as m:
+        m.setattr(
+            ansiext.AnsiPreprocessor,
+            'run',
+            _packed_ansi_preprocessor__run)
+        testbot.push_message('!whois no-example.com')
+        assert 'No match' in testbot.pop_message()

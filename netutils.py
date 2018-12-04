@@ -36,5 +36,9 @@ class NetUtils(BotPlugin):
     @arg_botcmd('domain', type=str)
     def whois(self, message, domain):
         """Fetch WHOIS information."""
-        result = whois.whois(domain)
-        return f'```\n{result.text}```'
+        try:
+            result = whois.whois(domain)
+            return f'```\n{result.text}```'
+        except whois.parser.PywhoisError as error:
+            return f'```\n{error}```'
+
