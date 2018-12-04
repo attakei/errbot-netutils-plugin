@@ -45,7 +45,7 @@ class NetUtils(BotPlugin):
                 \`\`\`
                 {result.text}
                 \`\`\`
-                '''
+                '''  # noqa: W605
             return textwrap.dedent(msg).strip()
-        except whois.parser.PywhoisError as error:
+        except whois.parser.PywhoisError:
             return f'WHOIS information of **{domain}** is not found.'
